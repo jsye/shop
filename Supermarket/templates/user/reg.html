@@ -13,18 +13,83 @@
 {% endblock %}
 {% block centent %}
 
-    <input type="text" name="mobile" placeholder="请输入手机号" class="login-name">
-    <input type="text" name="mobile" placeholder="请输入密码" class="login-password">
-    <input type="password" name="password" placeholder="确认密码" class="login-name">
-    <div class="yzm" style="margin-top: 1.5rem;">
-        <input type="text" class="reg-yzm" placeholder="输入验证码"/>
-        <input type="button" class="yzm-hq" value="获取验证码"/>
-    </div>
-    <input type="button" class="login-btn" value="立即注册">
+    <form action="{% url 'user:register' %}" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.mobile }}
+        <p>{{ form.errors.mobile.0 }}</p>
+        {{ form.password }}
+        <p>{{ form.errors.password.0 }}</p>
+        {{ form.repassword }}
+        <p>{{ form.errors.repassword.0 }}</p>
+        <div class="yzm" style="margin-top: 1.5rem;">
+            <input type="text" class="reg-yzm" placeholder="输入验证码"/>
+            <input type="button" class="yzm-hq" value="获取验证码"/>
+        </div>
+        <input type="submit" class="login-btn" value="立即注册">
+    </form>
     <div class="agree">
         <input type="checkbox" name="checkbox" value="同意" checked="">&nbsp;同意
         <a href="" class="xy">《用户协议》</a>
         <div class="r-login">已有账号，请<a href="login.html" class="l-login">登录</a></div>
     </div>
+
 {% endblock %}
 
+{% block body_js %}
+    <script>
+        $(function () {
+            $(".yzm-hq").on("click", function () {
+                {#获取输入的手机号码#}
+                var phone = $("#id_mobile").val();
+                {#如果手机号长度不等11位则摄氏#}
+                if (phone.length != 11) {
+                    alert("手机号码格式不正确！");
+                    return false;
+                }
+                {#通过字典形式组装数据，并把token一起组装发过去，以post形式#}
+                var data = {
+                    {#要发送的数据#}
+                    "tel": phone,
+                    {#带上token#}
+                    "csrfmiddlewaretoken": "{{ csrf_token }}"
+                }
+                {#将上面获取的对象保存一份在下面中使用#}
+                var that = this;
+                $.post("{% url 'user:SendCodeView' %}", data, function (data) {
+                    {#如果send == 200,成功#}
+                    if (data.send == 200) {
+                        {#成功后禁止点击#}
+                        $(that).attr('disabled', 'disabled');
+                        {#修改CSS为灰色#}
+                        $(that).css("background-color", "gray");
+                        {#在按钮上显示60秒倒计时提示#}
+                        var time = 5;
+                        var msg = time + "秒后重新发送";
+                        $(that).val(msg);
+                        {#使用定时器改变按钮上面的时间#}
+                        var timer = window.setInterval(function () {
+                            {#时间自减#}
+                            --time;
+                            if(time==0){
+                                {#倒计时结束清除计时器#}
+                                window.clearInterval(timer);
+                                {#清除按钮上的disabled属性#}
+                                $(that).removeAttr("disabled")
+                                {#按钮恢复原来的样式#}
+                                $(that).css("background-color"," #76bb2a")
+                                msg = "获取验证码"
+                                $(that).val(msg)
+                                return false;
+                            }
+                            msg = time + "秒后重新发送";
+                            $(that).val(msg)
+                        }, 1000);
+                    } else {
+                        alert(data.msg);
+                    }
+
+                })
+            });
+        });
+    </script>
+{% endblock %}

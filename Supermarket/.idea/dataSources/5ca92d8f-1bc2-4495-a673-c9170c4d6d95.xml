@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="Django default">
+<dataSource name="db.sqlite3">
   <database-model serializer="dbm" rdbms="SQLITE" format-version="4.11">
     <root id="1">
       <ServerVersion>3.20.1</ServerVersion>
@@ -471,66 +471,53 @@ model</ColNames>
     <column id="110" parent="18" name="name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="18" name="password">
+    <column id="111" parent="18" name="mobile">
       <Position>3</Position>
-      <DataType>varchar(16)|0s</DataType>
+      <DataType>varchar(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="112" parent="18" name="sex">
+    <column id="112" parent="18" name="password">
       <Position>4</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="113" parent="18" name="school">
+    <column id="113" parent="18" name="sex">
       <Position>5</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="114" parent="18" name="school">
+      <Position>6</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="114" parent="18" name="address">
-      <Position>6</Position>
+    <column id="115" parent="18" name="address">
+      <Position>7</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="115" parent="18" name="add_date">
-      <Position>7</Position>
-      <DataType>datetime|0s</DataType>
-    </column>
-    <column id="116" parent="18" name="update_date">
+    <column id="116" parent="18" name="add_date">
       <Position>8</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="117" parent="18" name="delete">
+    <column id="117" parent="18" name="update_date">
       <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="118" parent="18" name="delete">
+      <Position>10</Position>
       <DataType>bool|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="118" parent="18" name="mobile">
-      <Position>10</Position>
-      <DataType>integer|0s</DataType>
+    <column id="119" parent="18" name="bthday">
+      <Position>11</Position>
+      <DataType>date|0s</DataType>
     </column>
-    <index id="119" parent="18" name="sqlite_autoindex_user_1">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>name</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
-    <index id="120" parent="18" name="sqlite_autoindex_user_2">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>mobile</ColNames>
-      <ColumnCollations></ColumnCollations>
-      <Unique>1</Unique>
-    </index>
+    <column id="120" parent="18" name="fromshome">
+      <Position>12</Position>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
     <key id="121" parent="18">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-    </key>
-    <key id="122" parent="18">
-      <ColNames>name</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_user_1</UnderlyingIndexName>
-    </key>
-    <key id="123" parent="18">
-      <ColNames>mobile</ColNames>
-      <UnderlyingIndexName>sqlite_autoindex_user_2</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
