@@ -171,3 +171,15 @@ class SendCodeView(View):
             # 允许注册，生成4位随机短信验证码
             msgcode = ''.join([str(random.randint(0, 9)) for _ in range(4)])
             return JsonResponse({'send': 200, 'msg': msgcode})
+
+
+# index/
+
+class IndexView(View):
+    """
+        index
+    """
+
+    def get(self, request):
+        pass
+        return render(request, 'index/index.html')
