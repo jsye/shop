@@ -93,6 +93,7 @@ class Addressview(View):
 class Infoview(View):
     def get(self, request):
         # 使用后台表单喧染前端,将数据带回到前端表单中
+
         form = InfoForm()
         return render(request, 'user/infor.html', {"form": form})
 
@@ -118,6 +119,27 @@ class Infoview(View):
         else:
             # 不成功接着修改
             return render(request, 'user/infor.html', {"form": form})
+
+
+"""
+
+
+# 用户头像上传 View
+
+def headIMG(request):
+    # 当使用post上传图片时执行
+    if request.method == "GET":
+        # 获取用户ID
+        id = request.session.get('id')
+        # 查询用户数据
+        res = Usermodel.objects.get(pk=id)
+        
+        
+        return HttpResponse('ok?')
+    return HttpResponse('NO')
+
+
+"""
 
 
 # logout/
@@ -183,3 +205,57 @@ class IndexView(View):
     def get(self, request):
         pass
         return render(request, 'index/index.html')
+
+
+"""
+    动态  message/
+"""
+
+
+class MessageView(View):
+    """
+        message/
+    """
+
+    def get(self, request):
+        pass
+        return render(request, 'index/message.html')
+
+    def post(self, request):
+        pass
+        return render(request, 'index/message.html')
+
+
+"""
+    购物车 
+    
+"""
+
+
+class ShopcartView(View):
+    """
+        shopcart/
+    """
+    def get(self,request):
+        pass
+        return render(request,'index/shopcart.html')
+
+    def post(self,request):
+        pass
+        return render(request,'index/shopcart.html')
+
+
+"""
+    订单
+"""
+class AllorderView(View):
+    """
+        allorder/
+    """
+    def get(self,request):
+        pass
+        return render(request,'index/allorder.html')
+
+    def post(self,request):
+        pass
+        return render(request,'index/allorder.html')

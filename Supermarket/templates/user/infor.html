@@ -16,17 +16,22 @@
     </header>
 {% endblock %}
 {% block centent %}
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <ul class="safty1">
-            <li>
-                <a href="">
-                    <i style="margin-top: 25px;">头像</i>
-                    <div class="infor-pic">
-                        <img src="{% static 'images/infortx.png' %}"/>
-                    </div>
-                </a>
-            </li>
+
+    <ul class="safty1">
+        <li>
+            <a href="">
+                <i style="margin-top: 25px;">头像</i>
+                <div class="infor-pic">
+                    <img src="{% static 'images/infortx.png' %}"/>
+                  </div>
+            </a>
+            <!-- webuploader头像上存-->
+
+        </li>
+
+        <!-- 内容 -->
+        <form action="" method="post">
+            {% csrf_token %}
             <li>
                 <i>昵称</i>
                 {{ form.name }}
@@ -48,22 +53,22 @@
                 <i>生日</i>
                 {{ form.bthday }}
             </li>
-        </ul>
-        <ul class="safty1">
-            <li>
-                <i>学校</i>
-                {{ form.school }}
-            </li>
-            <li>
-                <i>位置</i>
-                {{ form.address }}
-            </li>
-            <li>
-                <i>故乡</i>
-                {{ form.fromshome }}
-            </li>
-        </ul>
-        <input type="submit" value="提交">
+    </ul>
+    <ul class="safty1">
+        <li>
+            <i>学校</i>
+            {{ form.school }}
+        </li>
+        <li>
+            <i>位置</i>
+            {{ form.address }}
+        </li>
+        <li>
+            <i>故乡</i>
+            {{ form.fromshome }}
+        </li>
+    </ul>
+    <input type="submit" value="提交">
     </form>
 {% endblock %}
 {% block body_js %}

@@ -13,7 +13,7 @@ this is usermodel table
 
 """
 
-
+# 用户信息表
 class Usermodel(models.Model):
     sex_list = ((1, '男'),
                 (2, '女'),
@@ -32,6 +32,7 @@ class Usermodel(models.Model):
                                 validators=[
                                     validators.MinLengthValidator(8)
                                 ])
+    headimg = models.ImageField(upload_to='shop/%Y%m/%d', default='default/shop1.png', verbose_name="用户头像")
 
     sex = models.IntegerField(choices=sex_list, default=3, verbose_name='性别', null=True, blank=True)
 
@@ -52,9 +53,14 @@ class Usermodel(models.Model):
 
     class Meta:
         db_table = "user"
+        # 后台显示的名称
+        verbose_name = "用户表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.mobile
+
+
 
 
 """
@@ -72,8 +78,11 @@ class Goods_cla(BaseModel):
     def __str__(self):
         return self.cla_name
 
-    class Mete:
+    class Meta:
         db_table = "Goods_cla"
+        # 后台显示的名称
+        verbose_name = "商品分类"
+        verbose_name_plural = verbose_name
 
 
 # 商品SKU表
@@ -95,19 +104,25 @@ class Goods_SKU(BaseModel):
 
     class Meta:
         db_table = "Goods_SKU"
+        # 后台显示的名称
+        verbose_name = "商品SKU表"
+        verbose_name_plural = verbose_name
 
 
 #  商品SPU表
 class Goods_SPU(models.Model):
     # spu_id = models.SmallIntegerField(verbose_name="商品spu_id")  #  注:这个由orm自动创建
     spu_name = models.CharField(verbose_name="商品SPU_name", max_length=50)
-    spu_info = models.CharField(verbose_name="商品简介", max_length=100)
+    spu_info = models.TextField(verbose_name="商品详情", max_length=100)
 
     def __str__(self):
         return self.spu_name
 
     class Meta:
         db_table = "Goods_SPU"
+        # 后台显示的名称
+        verbose_name = "商品SPU表"
+        verbose_name_plural = verbose_name
 
 
 # 商品相册
@@ -119,9 +134,14 @@ class Goods_Photo(BaseModel):
 
     class Meta:
         db_table = "Goods_Photo"
+        #  后台显示名称
+        verbose_name = "商品相册"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.pk
+
+
 
 
 # 商品单位表
@@ -133,6 +153,9 @@ class Goods_Unit(BaseModel):
 
     class Meta:
         db_table = "Goods_Unit"
+        #  后台显示名称
+        verbose_name = "商品单位表"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.unit_goods_unit
@@ -156,6 +179,9 @@ class IndexFlashImg(BaseModel):
 
     class Meta:
         db_table = 'IndexFlashImg'
+        #  后台显示名称
+        verbose_name = "首页轮播商品表"
+        verbose_name_plural = verbose_name
 
 
 # 首页活动表
@@ -170,6 +196,9 @@ class IndexActive(models.Model):
 
     class Meta:
         db_table = "IndexActive"
+        #  后台显示名称
+        verbose_name = "首页活动表"
+        verbose_name_plural = verbose_name
 
 
 # 首页活动专区
@@ -185,6 +214,9 @@ class IndexZone(BaseModel):
 
     class Meta:
         db_table = 'IndexZone'
+        #  后台显示名称
+        verbose_name = "首页活动专区"
+        verbose_name_plural = verbose_name
 
 
 # 首页专区活动商品表
@@ -198,7 +230,9 @@ class IndexZoneActive(BaseModel):
 
     class Meta:
         db_table = 'IndexZoneActive'
-
+        #  后台显示名称
+        verbose_name = "首页专区活动商品表"
+        verbose_name_plural = verbose_name
 
 """
     订单信息表
@@ -232,6 +266,9 @@ class CartInfo(BaseModel):
 
     class Meta:
         db_table = "CartInfo"
+        #  后台显示名称
+        verbose_name = "订单信息"
+        verbose_name_plural = verbose_name
 
 
 # 支付方式
@@ -245,6 +282,9 @@ class Pays(BaseModel):
 
     class Meta:
         db_table = "Pays"
+        #  后台显示名称
+        verbose_name = "支付方式"
+        verbose_name_plural = verbose_name
 
 
 # 订单商品表
@@ -259,7 +299,9 @@ class CartCommodity(models.Model):
 
     class Meta:
         db_table = 'CartCommodity'
-
+        #  后台显示名称
+        verbose_name = "订单商品表"
+        verbose_name_plural = verbose_name
 
 # 运输方式
 
@@ -272,6 +314,9 @@ class CartTransport(BaseModel):
 
     class Meta:
         db_table = 'CartTransport'
+        #  后台显示名称
+        verbose_name = "运输方式"
+        verbose_name_plural = verbose_name
 
 
 #  收费地址
@@ -291,3 +336,7 @@ class CartAddress(BaseModel):
 
     class Meta:
         db_table = 'CartAddress'
+        #  后台显示名称
+        verbose_name = "收费地址"
+        verbose_name_plural = verbose_name
+

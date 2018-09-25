@@ -98,7 +98,7 @@ class LoginForm(forms.ModelForm):
         # 通过手机号码查询数据，如果存在再验证密码 ，如果不存在则直接报错
         user = Usermodel.objects.filter(mobile=phone).first()
         if user is None:
-            raise forms.ValidationError({"phone": "该手机号码没有注册！"})
+            raise forms.ValidationError({"mobile": "该手机号码没有注册！"})   # mobile  这个是数据库中的字段
         else:
             # 手机号码存在，验证密码是否正解
             password_in_db = user.password  # 数据库中已加密的密码

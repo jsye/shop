@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',    # 这是图片保存位置配置
             ],
         },
     },
@@ -125,3 +126,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+#  图片上传保存位置
+
+MEDIA_URL = "/static/media/"
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
