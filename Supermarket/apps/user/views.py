@@ -236,26 +236,68 @@ class ShopcartView(View):
     """
         shopcart/
     """
-    def get(self,request):
-        pass
-        return render(request,'index/shopcart.html')
 
-    def post(self,request):
+    def get(self, request):
         pass
-        return render(request,'index/shopcart.html')
+        return render(request, 'index/shopcart.html')
+
+    def post(self, request):
+        pass
+        return render(request, 'index/shopcart.html')
 
 
 """
     订单
 """
+
+
 class AllorderView(View):
     """
         allorder/
     """
-    def get(self,request):
-        pass
-        return render(request,'index/allorder.html')
 
-    def post(self,request):
+    def get(self, request):
         pass
-        return render(request,'index/allorder.html')
+        return render(request, 'index/allorder.html')
+
+    def post(self, request):
+        pass
+        return render(request, 'index/allorder.html')
+
+
+"""
+    详情页
+"""
+
+
+class DetailView(View):
+    """
+        detail/
+    """
+
+    def get(self, request):
+        pass
+        return render(request, 'index/detail.html')
+
+    def post(self, request):
+        pass
+        return render(request, 'index/detail.html')
+
+
+"""
+    列表页
+"""
+
+
+class CategoryView(View):
+    """
+        category/
+    """
+
+    def get(self, request):
+        pass
+        return render(request, 'index/category.html')
+
+    def post(self, request):
+        pass
+        return render(request, 'index/category.html')

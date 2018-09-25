@@ -146,10 +146,8 @@ class Goods_Photo(BaseModel):
 
 # 商品单位表
 class Goods_Unit(BaseModel):
-    Goods_unit = ((0, ''), (1, '斤'), (2, '箱'), (3, '件'), (4, '条'), (5, '套'))
-
     # unit_goods_id = models.SmallIntegerField(verbose_name="商品单位id")  # 由orm自动创建
-    unit_goods_unit = models.SmallIntegerField(verbose_name="商品单位", choices=Goods_unit, default=0)
+    unit_goods_unit = models.CharField(max_length=10, verbose_name="商品单位")
 
     class Meta:
         db_table = "Goods_Unit"
