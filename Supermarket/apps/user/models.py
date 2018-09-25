@@ -8,10 +8,14 @@ from django.db import models
 
 from user.helper import BaseModel
 
+# 这是 ckeditor 富文件本编辑器
+from ckeditor_uploader.fields import RichTextUploadingField
+
 """
 this is usermodel table 
 
 """
+
 
 # 用户信息表
 class Usermodel(models.Model):
@@ -59,8 +63,6 @@ class Usermodel(models.Model):
 
     def __str__(self):
         return self.mobile
-
-
 
 
 """
@@ -113,7 +115,7 @@ class Goods_SKU(BaseModel):
 class Goods_SPU(models.Model):
     # spu_id = models.SmallIntegerField(verbose_name="商品spu_id")  #  注:这个由orm自动创建
     spu_name = models.CharField(verbose_name="商品SPU_name", max_length=50)
-    spu_info = models.TextField(verbose_name="商品详情", max_length=100)
+    spu_info = RichTextUploadingField(verbose_name="商品详情", max_length=100)
 
     def __str__(self):
         return self.spu_name
@@ -140,8 +142,6 @@ class Goods_Photo(BaseModel):
 
     def __str__(self):
         return self.pk
-
-
 
 
 # 商品单位表
@@ -234,6 +234,7 @@ class IndexZoneActive(BaseModel):
         verbose_name = "首页专区活动商品表"
         verbose_name_plural = verbose_name
 
+
 """
     订单信息表
 """
@@ -303,6 +304,7 @@ class CartCommodity(models.Model):
         verbose_name = "订单商品表"
         verbose_name_plural = verbose_name
 
+
 # 运输方式
 
 class CartTransport(BaseModel):
@@ -339,4 +341,3 @@ class CartAddress(BaseModel):
         #  后台显示名称
         verbose_name = "收费地址"
         verbose_name_plural = verbose_name
-

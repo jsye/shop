@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # user APP
     'user.apps.UserConfig',
+    # ckeditor 富文本编辑器
+    'ckeditor',
+    # ckeditor 富文本编辑器文件上存部件
+    'ckeditor_uploader',
 
 ]
 
@@ -67,7 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',    # 这是图片保存位置配置
+                'django.template.context_processors.media',  # 这是图片保存位置配置
             ],
         },
     },
@@ -106,7 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
@@ -127,9 +132,21 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# # 安装 ckedit 时收集静态文件使用
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 #  图片上传保存位置
 
 MEDIA_URL = "/static/media/"
 
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+# 配置ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"  # 这是配置 ckeditor  的上存目录
+
+# 编辑器样式配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
